@@ -1,0 +1,6 @@
+.Searchbar {
+  display: flex;
+  justify-content: center;
+  background-color: #3f51b5;
+  padding: 10px;
+}
