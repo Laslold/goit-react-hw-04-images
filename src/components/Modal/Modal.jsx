@@ -12,7 +12,7 @@ const Modal = ({ close, children }) => {
   });
 
   const handleClose = e => {
-    if (e.target === e.currentTarget || e.code === 'Escape') {
+    if (e.code === 'Escape' || e.target === e.currentTarget) {
       close();
       return;
     }
