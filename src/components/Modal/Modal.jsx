@@ -8,11 +8,11 @@ const modalRoot = document.getElementById('modal-root');
 const Modal = ({ close, children }) => {
   useEffect(() => {
     document.addEventListener('keydown', handleClose);
-    return document.removeEventListener('keydown', handleClose);
+    return () => document.removeEventListener('keydown', handleClose);
   });
 
-  const handleClose = e => {
-    if (e.code === 'Escape' || e.target === e.currentTarget) {
+  const handleClose = ({ target, code, currentTarget }) => {
+    if (code === 'Escape' || target === currentTarget) {
       close();
       return;
     }

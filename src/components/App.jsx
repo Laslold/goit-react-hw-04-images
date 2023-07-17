@@ -55,7 +55,6 @@ const App = () => {
           ...prevContent,
           items: [...prevContent.items, ...data.hits],
           loading: false,
-
           totalHits: data.totalHits,
         }));
       } catch (error) {
