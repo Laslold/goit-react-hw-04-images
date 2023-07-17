@@ -1,50 +1,39 @@
 import { createPortal } from 'react-dom';
-import { Component } from 'react';
+import { Component, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { ModalStyle } from './Modal.styled';
 
 const modalRoot = document.getElementById('modal-root');
+const Modal = ({ close, children }) => {
+  useEffect(() => {
+    document.addEventListener('keydown', handleClose);
+    return document.removeEventListener('keydown', handleClose);
+  });
 
-class Modal extends Component {
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleClose);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleClose);
-  }
-
-  handleClose = e => {
+  const handleClose = e => {
+    console.log(e.code);
     if (e.target === e.currentTarget || e.code === 'Escape') {
-      this.props.close();
+      close();
       return;
     }
-    // if (e.code === 'Escape') {
-    //   this.props.close();
-    // }
   };
 
-  render() {
-    const { close, children } = this.props;
-    const { handleClose } = this;
-
-    return createPortal(
-      <ModalStyle onClick={handleClose}>
-        <div className="modal">
-          <img
-            className="modalClose"
-            onClick={close}
-            src="https://img.icons8.com/ultraviolet/40/cancel.png"
-            alt="cancel"
-          />
-          {children}
-        </div>
-      </ModalStyle>,
-      modalRoot
-    );
-  }
-}
+  return createPortal(
+    <ModalStyle onClick={handleClose}>
+      <div className="modal">
+        <img
+          className="modalClose"
+          onClick={close}
+          src="https://img.icons8.com/ultraviolet/40/cancel.png"
+          alt="cancel"
+        />
+        {children}
+      </div>
+    </ModalStyle>,
+    modalRoot
+  );
+};
 
 Modal.propTypes = {
   close: PropTypes.func.isRequired,

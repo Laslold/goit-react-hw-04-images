@@ -1,12 +1,12 @@
-import axios from "axios";
+import axios from 'axios';
 const instance = axios.create({
-  baseURL: "https://pixabay.com/api/?key=33320423-fc6a84bdab9b582d6d8de3308",
+  baseURL: 'https://pixabay.com/api/?key=33320423-fc6a84bdab9b582d6d8de3308',
 });
 export const getPosts = async (
   page = 1,
   per_page = 12,
-  q = "dog",
-  image_type = "photo"
+  q = 'dog',
+  image_type = 'photo'
 ) => {
   const { data } = await instance({
     params: {
@@ -20,9 +20,9 @@ export const getPosts = async (
 };
 
 export const searchPosts = async (
-  q = "dog",
+  q = 'dog',
   page = 1,
-  image_type = "photo"
+  image_type = 'photo'
 ) => {
   const { data } = await instance({
     params: {
