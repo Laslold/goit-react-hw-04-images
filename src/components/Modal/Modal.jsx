@@ -12,7 +12,6 @@ const Modal = ({ close, children }) => {
   });
 
   const handleClose = e => {
-    console.log(e.code);
     if (e.target === e.currentTarget || e.code === 'Escape') {
       close();
       return;
