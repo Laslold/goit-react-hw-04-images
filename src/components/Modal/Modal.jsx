@@ -11,7 +11,15 @@ const Modal = ({ close, children }) => {
     return () => document.removeEventListener('keydown', handleClose);
   });
 
-  const handleClose = ({ target, code, currentTarget }) => {
+  // const handleClose = useCallback(
+  //   e => {
+  //     if (e.code === 'Escape' || e.target === e.currentTarget) {
+  //       close();
+  //     }
+  //   },
+  //   [close]
+  // );
+  const handleClose = ({ code, target, currentTarget }) => {
     if (code === 'Escape' || target === currentTarget) {
       close();
       return;
